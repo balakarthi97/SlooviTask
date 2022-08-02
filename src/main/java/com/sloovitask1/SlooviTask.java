@@ -25,41 +25,45 @@ public class SlooviTask extends CommonHelper {
 	public static void main(String[] args) throws IOException, InterruptedException, AWTException {
 		
 		CommonHelper chobj = new CommonHelper();
+		
+//Browser Launch
 		chobj.launch();
 		
 //Scenario: TS_001 
 //Test case: TC_001_01 |Validate system behavior when invalid email id and valid password is entered.|
-		driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989xx123@gmail.com" , Keys.TAB , "12345678" , Keys.ENTER);
-		WebElement alertMsg1 = driver.findElement(By.xpath("//div [contains (@class , 'Message-danger alert ')]")); String
-		message1 = alertMsg1.getText(); System.out.println(message1);
-		chobj.screenshot("\\Loginpage1.png"); 
-		chobj.close();
-				 
-				
+				driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989xx123@gmail.com" , Keys.TAB , "12345678" , Keys.ENTER);
+				WebElement alertMsg1 = driver.findElement(By.xpath("//div [contains (@class , 'Message-danger alert ')]")); 
+				String message1 = alertMsg1.getText(); System.out.println(message1);
+				chobj.screenshot("\\Loginpage1.png"); 
+				chobj.close();
+				System.out.println("Successful: TC_001_01 not Loggedin");		 
+						
 //Scenario: TS_001
 //Test case: TC_001_02 |Validate system behavior when valid email id and invalid password is entered.|
-		chobj.relaunch();
-		driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989@gmail.com" , Keys.TAB , "12345678000" , Keys.ENTER);
-		WebElement alertMsg2 = driver.findElement(By.xpath("//div [contains (@class , 'Message-danger alert ')]"));
-		String message2 = alertMsg2.getText();
-		System.out.println(message2);
-		chobj.screenshot("\\Loginpage2.png");
-		chobj.close();
-				
+				chobj.relaunch();
+				driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989@gmail.com" , Keys.TAB , "12345678000" , Keys.ENTER);
+				WebElement alertMsg2 = driver.findElement(By.xpath("//div [contains (@class , 'Message-danger alert ')]"));
+				String message2 = alertMsg2.getText();
+				System.out.println(message2);
+				chobj.screenshot("\\Loginpage2.png");
+				chobj.close();
+				System.out.println("Successful: TC_001_02 not Loggedin");
+						
 //Scenario: TS_001
 //Test case: TC_001_03 |Validate system behavior when invalid email id format and valid password are entered.|
-		chobj.relaunch();
-		driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989xx123" , Keys.TAB , "12345678" , Keys.ENTER);
-		chobj.screenshot("\\Loginpage3.png");
-		chobj.close();
-				
+				chobj.relaunch();
+				driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989xx123" , Keys.TAB , "12345678" , Keys.ENTER);
+				chobj.screenshot("\\Loginpage3.png");
+				chobj.close();
+				System.out.println("Successful: TC_001_03 not Loggedin");
+						
 //Scenario: TS_001
 //Test case: TC_001_04 |Validate system behavior when email id and password are not entered and click login.|
-		chobj.relaunch();
-		driver.findElement(By.xpath("//button[@class = 'btn btn-primary']")).sendKeys( Keys.ENTER);
-		chobj.screenshot("\\Loginpage4.png");
-		chobj.close();
-		
+				chobj.relaunch();
+				driver.findElement(By.xpath("//button[@class = 'btn btn-primary']")).sendKeys( Keys.ENTER);
+				chobj.screenshot("\\Loginpage4.png");
+				chobj.close();
+				System.out.println("Successful: TC_001_04 not Loggedin");		
 		
 //Scenario: TS_001
 //Test case: TC_001_05 |Validate system behavior when invalid email id and valid password is entered.|
@@ -67,20 +71,20 @@ public class SlooviTask extends CommonHelper {
 		driver.findElement(By.xpath("//input [@name = 'email']")).sendKeys("smithwills1989@gmail.com" , Keys.TAB , "12345678" , Keys.ENTER);
 		Thread.sleep(1000);
 		chobj.screenshot("\\Loginpage5.png");
+		System.out.println("Successful: TC_001_05 Loggedin");
 		
 //Scenario: TS_002
 //Test case: TS_002_01 
+//LeadModule |Validate Task Description, Date, and Time with new data.|
 		
 		driver.findElement(By.xpath("(//span [@class = 'Menu_itemText'])[6]")).click();
 		WebElement slooviLeads = driver.findElement(By.xpath("//td [@title= 'Sloovi']"));
 		chobj.actionClass(slooviLeads);
 		slooviLeads.click();
-		
-//LeadModule
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//button [@data-testid = 'add-task']")).click();
 		
-		WebElement textObj = driver.findElement(By.xpath("//input [@id = 'undefined_task_msg']"));
+		WebElement textObj = driver.findElement(By.xpath("//input [@type = 'text']"));
 		textObj.click();
 		Thread.sleep(3000);
 		Actions actionObj = new Actions (driver);
@@ -107,10 +111,11 @@ public class SlooviTask extends CommonHelper {
 		driver.findElement(By.xpath("//div [@data-placement = 'bottom-start']//li")).click();
 		driver.findElement(By.xpath("//button[@type= 'submit']")).click();
 		chobj.screenshot("\\LeadModule.png");
+		System.out.println("Successful: TC_002_01 LeadModule Created");
 
 //Scenario: TS_003
-//Test case: TS_003_01 	
-//OptionsModule
+//Test case: TS_003_01 	|Validate Date, Value, Confidence, Time period and Notes with new data.|
+//OpportunitiesModule 
 		
 		driver.findElement(By.xpath("//button [@data-testid = 'add-undefined']")).click();
 		
@@ -128,16 +133,27 @@ public class SlooviTask extends CommonHelper {
 		Actions actionObj3 = new Actions (driver);
 		actionObj3.doubleClick(valueObj).perform();
 		valueObj.sendKeys("100");
-		driver.findElement(By.xpath("(//input [@type = 'search'])[2]"));
+		
+		
+		driver.findElement(By.xpath("(//input [@type = 'search'])[2]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//li [text() = 'Monthly']")).click();
+		
 		driver.findElement(By.xpath("(//div [@class = 'Select__inputWrapper'])[3]")).click();
-		driver.findElement(By.xpath("(//div [@data-popper-arrow = 'true']/parent :: div//ul//li)[2]")).click();
-		
-		WebElement contObj = driver.findElement(By.xpath("(//div [@class = 'Select__inputWrapper'])[3]"));
-		contObj.click();
-		driver.findElement(By.xpath("//ul [@class = 'Select__list']/li")).click();
-		
+		driver.findElement(By.xpath("//li [text() = 'Balakumaran']")).click();
+			
 		driver.findElement(By.xpath("//textarea [@name= 'msg']")).sendKeys("Task Completed");
 		driver.findElement(By.xpath("(//button[@type= 'submit'])[1]")).click();
 		chobj.screenshot("\\OptionsModule.png");
+		
+		WebElement completeObj = driver.findElement(By.xpath("//span [@class = 'Opportunity__statusText']"));
+		String completeText = completeObj.getText();	
+		System.out.println(completeText);
+		System.out.println("Successful: TC_003_01 OpportunitiesModule Created");
+		
+//Quit
+		//chobj.quit();
 	}
+	
+	
 }

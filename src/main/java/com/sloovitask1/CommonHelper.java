@@ -35,7 +35,6 @@ public class CommonHelper {
 		File pathObj1 = new File ("C:\\Users\\Bala karthi\\eclipse-workspace\\SlooviTask\\Screenshot" + nameWithFormat);	
 		File formtObj1 = ssOfPage1.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(formtObj1, pathObj1);
-		
 	}
 	
 	public void refresh() throws AWTException {
@@ -60,5 +59,9 @@ public class CommonHelper {
 		
 		Actions actObj = new Actions(driver);
 		actObj.moveToElement(webelement).perform();
+	}
+	
+	public void quit() {
+		driver.quit();
 	}
 }
